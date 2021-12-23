@@ -16,17 +16,6 @@ class CountryListApi extends ApiAbstract
         $this->service_url = $this->getEndPoint();
     }
 
-    private function callApi(){
-       $callApi = Http::withHeaders(
-           [
-               'Authorization'=>config('apis.pickvisa.token')
-           ]
-       )
-           ->get($this->service_url);
-
-       return $callApi;
-    }
-
     public function getResponse()
     {
         return $this->callApi();

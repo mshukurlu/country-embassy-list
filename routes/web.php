@@ -13,5 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\HomeController::class,'index']);
+Route::get('/', [\App\Http\Controllers\HomeController::class,'index'])->name('home');
 
+Route::get('/embassy/{country_slug}',[\App\Http\Controllers\EmbassyListController::class,'showAll'])->name('embassy_list');

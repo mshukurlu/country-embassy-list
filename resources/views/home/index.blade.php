@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{$country->name}}</h5>
                         <p class="card-text">{{$country->alpha_2_code}}</p>
-                        <a href="#" class="btn btn-primary">Go to Embassy page</a>
+                        <a href="{{route('embassy_list',['country_slug'=>$country->slug])}}" class="btn btn-primary">Go to Embassy List page</a>
                     </div>
                 </div>
             </div>
