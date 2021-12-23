@@ -13,7 +13,8 @@ class CountryService
 {
     public function all()
     {
-        //If you want cache those items
+        // If you want cache those items,
+        // it also prevent down time every day at 01:00 because the script firstly truncate table
         $countries = Country::all();
 
         return $countries;
