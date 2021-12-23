@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Apis\CountryListApi;
 use App\Models\Country;
+use App\Models\Translation;
 use Illuminate\Support\Facades\DB;
 
 class CountryService
@@ -38,7 +39,7 @@ class CountryService
             DB::transaction(function () use ($countries) {
 
                 Country::truncate();
-
+                Translation::truncate();
                 /*
                  * I want to make bulk insertation for avoiding additional sql queries to database, I can do it , but I need to store translations also
                  * Currently I will iterate all countries and add them into database
