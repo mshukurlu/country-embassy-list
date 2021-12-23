@@ -12,6 +12,7 @@ class CountryService
 {
     public function all()
     {
+        //If you want cache those items
         $countries = Country::all();
 
         return $countries;
