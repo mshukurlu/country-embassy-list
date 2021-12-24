@@ -4,10 +4,12 @@
 namespace App\Apis;
 
 
+use App\Traits\PickVisaToken;
 use Illuminate\Support\Facades\Http;
 
 abstract class ApiAbstract implements ApiInterface
 {
+    use PickVisaToken;
     private $apiUrl,$endPoint;
     protected $service_url;
     public function __construct()
@@ -30,17 +32,13 @@ abstract class ApiAbstract implements ApiInterface
         // you can override this method
         $callApi = Http::withHeaders(
             [
-                'Authorization'=>$this->token()
+                'Authorization'=>
+                    $this->getPickVisaToken()
             ]
         )
             ->get($this->service_url);
 
         return $callApi;
-    }
-
-    private function token()
-    {
-        return config('apis.pickvisa.token');
     }
 
     abstract public function getResponse();
