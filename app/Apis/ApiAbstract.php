@@ -15,26 +15,32 @@ abstract class ApiAbstract implements ApiInterface
         $this->apiUrl = config('apis.pickvisa.service_url');
     }
 
-    protected function setEndPoint($endPoint)
+    public function setEndPoint($endPoint)
     {
         $this->endPoint = $this->apiUrl.$endPoint;
     }
 
-    protected function getEndPoint()
+    public function getEndPoint()
     {
         return $this->endPoint;
     }
 
     protected function callApi(){
-        //if you need to add extra logics for further APIs you can extand this method
+        // if you need to add extra logics for further APIs
+        // you can override this method
         $callApi = Http::withHeaders(
             [
-                'Authorization'=>config('apis.pickvisa.token')
+                'Authorization'=>$this->token()
             ]
         )
             ->get($this->service_url);
 
         return $callApi;
+    }
+
+    private function token()
+    {
+        return config('apis.pickvisa.token');
     }
 
     abstract public function getResponse();
